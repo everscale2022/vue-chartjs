@@ -1,7 +1,10 @@
 const { TonClient, AggregationFn } = require("@tonclient/core");
-const { libWeb } = require("@tonclient/lib-web");
+const { libWeb, libWebSetup } = require("@tonclient/lib-web");
 
-//const { libWeb } = require("@tonclient/lib-node");
+libWebSetup({
+    binaryURL: "./tonclient.wasm",
+});
+
 TonClient.useBinaryLibrary(libWeb);
 const client = new TonClient({
     network: {
@@ -22,7 +25,7 @@ const netCollection = async (handle) => {
 const netBlocks = async (interval = 15) => {
     let operations = [];
     let labels = [];
-    let gt = Math.round(Date.now() / 1000) - (60*1);
+    let gt = Math.round(Date.now() / 1000) - (60 * 1);
     for (let i = 0; i < 10; i++) {
         let lt = gt;
         gt = lt - interval * 60;
@@ -51,7 +54,7 @@ const netBlocks = async (interval = 15) => {
         });
         return {
             bps: response.results.map((value) => {
-                return Math.floor(value[0] / (interval * 60) * 100)/100
+                return Math.floor(value[0] / (interval * 60) * 100) / 100
             }).reverse(),
             labels: labels.reverse()
         }
@@ -63,7 +66,7 @@ const netBlocks = async (interval = 15) => {
 const netTransactions = async (interval = 15) => {
     let operations = [];
     let labels = [];
-    let gt = Math.round(Date.now() / 1000) - (60*1);
+    let gt = Math.round(Date.now() / 1000) - (60 * 1);
     for (let i = 0; i < 10; i++) {
         let lt = gt;
         gt = lt - interval * 60;
@@ -82,7 +85,7 @@ const netTransactions = async (interval = 15) => {
                 value: {
                     ne: null
                 },
-                created_at:{
+                created_at: {
                     lt,
                     gt
                 }
@@ -103,7 +106,7 @@ const netTransactions = async (interval = 15) => {
         console.log(e);
     }
 }
-const netAccounts = async() => {  
+const netAccounts = async () => {
     let operations = [];
     let labels = [
         "0-1",
@@ -114,28 +117,28 @@ const netAccounts = async() => {
     ];
     let values = [
         {
-            gt:"0",
-            lt:"1000000000"
+            gt: "0",
+            lt: "1000000000"
         },
         {
-            gt:"1000000000",
-            lt:"100000000000"
+            gt: "1000000000",
+            lt: "100000000000"
         },
         {
-            gt:"100000000000",
-            lt:"1000000000000"
+            gt: "100000000000",
+            lt: "1000000000000"
         },
         {
-            gt:"1000000000000",
-            lt:"10000000000000"
-        },        
+            gt: "1000000000000",
+            lt: "10000000000000"
+        },
         {
-            gt:"10000000000000",  
-            lt:"100000000000000000"          
+            gt: "10000000000000",
+            lt: "100000000000000000"
         }
-    ]      
-    values.forEach(value => {           
-            operations.push({
+    ]
+    values.forEach(value => {
+        operations.push({
             type: "AggregateCollection",
             collection: "accounts",
             fields: [
@@ -145,22 +148,22 @@ const netAccounts = async() => {
                 }
             ],
             filter: {
-                code_hash:{
+                code_hash: {
                     eq: "207dc560c5956de1a2c1479356f8f3ee70a59767db2bf4788b1d61ad42cdad82"
                 },
-                balance:{
-                     gt: value.gt,
-                     lt: value.lt
+                balance: {
+                    gt: value.gt,
+                    lt: value.lt
                 }
             }
         })
-    }); 
+    });
     try {
         const response = await client.net.batch_query({
             operations
         });
         return {
-            accounts: response.results.map(value =>{
+            accounts: response.results.map(value => {
                 return value[0]
             }),
             labels

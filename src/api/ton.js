@@ -1,6 +1,7 @@
 const { TonClient, AggregationFn } = require("@tonclient/core");
 const { libWeb, libWebSetup } = require("@tonclient/lib-web");
 
+
 libWebSetup({
     binaryURL: "./tonclient.wasm",
 });
@@ -11,16 +12,7 @@ const client = new TonClient({
         server_address: "main.ton.dev",
     }
 });
-const netCollection = async (handle) => {
-    await client.net.subscribe_collection(
-        {
-            collection: "blocks",
-            result: "id gen_utime gen_utime_string tr_count "
-        },
-        (d) => {
-            handle(d);
-        })
-}
+
 
 const netBlocks = async (interval = 15) => {
     let operations = [];
@@ -162,19 +154,28 @@ const netAccounts = async () => {
         const response = await client.net.batch_query({
             operations
         });
-        return {
-            accounts: response.results.map(value => {
+        
+       let data =  {
+                accounts: response.results.map(value => {
                 return value[0]
             }),
             labels
         }
+        let totalAccounts = 0;
+        for(let i = 0; i < data.accounts.length; i++){
+            totalAccounts += Number(data.accounts[i]);
+        }
+        data.labels = data.labels.map((value, index) =>{
+            return `${value} ${Math.round(data.accounts[index]/totalAccounts*100)}%`;
+        })
+     
+        return data;
     } catch (e) {
         console.log(e);
     }
 }
 
 module.exports = {
-    netCollection,
     netBlocks,
     netTransactions,
     netAccounts

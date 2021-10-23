@@ -19,7 +19,7 @@ export default {
   },
   async mounted() {
     const data = await netAccounts();
-    this.renderChart(
+      this.renderChart(
       {
         labels: data.labels,
         datasets: [

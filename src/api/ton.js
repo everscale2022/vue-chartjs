@@ -1,18 +1,5 @@
-const { TonClient, AggregationFn } = require("@tonclient/core");
-const { libWeb, libWebSetup } = require("@tonclient/lib-web");
-
-
-libWebSetup({
-    binaryURL: "./tonclient.wasm",
-});
-
-TonClient.useBinaryLibrary(libWeb);
-const client = new TonClient({
-    network: {
-        server_address: "main.ton.dev",
-    }
-});
-
+const { AggregationFn, client } = require("./webClient");
+const { depoolsGiversUsers } = require("./depoolsGiversUsers");
 
 const netBlocks = async (interval = 15) => {
     let operations = [];
@@ -154,21 +141,21 @@ const netAccounts = async () => {
         const response = await client.net.batch_query({
             operations
         });
-        
-       let data =  {
-                accounts: response.results.map(value => {
+
+        let data = {
+            accounts: response.results.map(value => {
                 return value[0]
             }),
             labels
         }
         let totalAccounts = 0;
-        for(let i = 0; i < data.accounts.length; i++){
+        for (let i = 0; i < data.accounts.length; i++) {
             totalAccounts += Number(data.accounts[i]);
         }
-        data.labels = data.labels.map((value, index) =>{
-            return `${value} ${Math.round(data.accounts[index]/totalAccounts*100)}%`;
+        data.labels = data.labels.map((value, index) => {
+            return `${value} ${Math.round(data.accounts[index] / totalAccounts * 100)}%`;
         })
-     
+
         return data;
     } catch (e) {
         console.log(e);
@@ -178,5 +165,6 @@ const netAccounts = async () => {
 module.exports = {
     netBlocks,
     netTransactions,
-    netAccounts
+    netAccounts,
+    depoolsGiversUsers
 }

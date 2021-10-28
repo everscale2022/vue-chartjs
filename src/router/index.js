@@ -18,6 +18,11 @@ const routes = [
                 path: '/transactions',
                 name: 'Transactions',
                 component: ()=> import('../components/transactions/Common.vue')
+            },
+            {
+                path: '/DepoolsGiversUsers',
+                name: 'DepoolsGiversUsers',
+                component: ()=> import('../components/DepoolsGiversUsers.vue')
             }
         ]
     

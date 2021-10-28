@@ -1,21 +1,30 @@
 <template>
   <div id="app">
-    <div class="h1 mb-4 text-center"> FreeTON MainNet statistics </div>       
-    <blocks/>   
-    <transactions class="mt-5"/>
-    <accounts class="mt-5"/>
+    <div id="nav" class="mb-5">
+      <div class="navbar-brand">MainNet</div>
+      <router-link to="/accounts">Accounts</router-link>
+      <router-link to="/blocks">Blocks</router-link>
+      <router-link to="/transactions">Transactions</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-<script>
-import blocks from "@/components/blocks/Common.vue";
-import transactions from "@/components/transactions/Common.vue";
-import accounts from "@/components/accounts.vue";
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  padding:30px;
+}
 
-export default {
-  name: "App",
-  components: {
-    blocks, transactions, accounts
-  }, 
-};
-</script>
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+</style>

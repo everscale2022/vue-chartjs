@@ -24,6 +24,7 @@
     "util": "^0.12.4",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.3.1",
+    "vue-router": "^3.5.3",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

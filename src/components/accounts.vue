@@ -24,7 +24,7 @@ export default {
         labels: data.labels,
         datasets: [
           {
-            label: "средства на сюрф аккаунтах",
+            label: "Assets on Surf accounts",
             backgroundColor: ["green", "blue", "red", "yellow", "orange"],
             data: data.accounts,
           },

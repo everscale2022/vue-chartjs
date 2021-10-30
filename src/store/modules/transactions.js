@@ -16,7 +16,7 @@ export default {
                 labels: data.labels,
                 datasets: [
                     {
-                        label: "Среднее количество транзакций в минуту",
+                        label: "Average transactons in the minute",
                         backgroundColor: "gray",
                         data: data.tpm,
                     },

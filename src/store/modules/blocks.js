@@ -16,7 +16,7 @@ export default {
                 labels: data.labels,
                 datasets: [
                   {
-                    label: "Среднее количество блоков в секунду",
+                    label: "Average blocks in second",
                     backgroundColor: "#f87979",
                     data: data.bps,
                   },

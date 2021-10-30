@@ -38,8 +38,7 @@ const surfTransactionsVolumes = async () => {
             let timestamp = key.split("_")[1];
             let dt = new Date(timestamp * 1000).toLocaleDateString("ru-RU");
             labels.push(dt);
-        }
-        console.log(volumes);
+        }     
         return {
             datasets: [
                 {

@@ -4,7 +4,6 @@ const utils = require("./utils");
 function makeQuery() {
     let query = '{';
     for (let index = 14; index >= 0; index--) {
-        console.log(index);
         let lt = utils.now - index * utils.oneDay;
         let gt = lt - utils.oneDay;
         query += `
@@ -24,7 +23,6 @@ function makeQuery() {
             )
           `;
     }
-    console.log(query);
     query += '}';  
     return query;
 }
@@ -34,7 +32,7 @@ const surfTransactionsVolumes = async () => {
     let labels = [];
 
     try {
-        let response = await (await client.net.query({ "query": makeQuery() })).result.data;
+        let response =  (await client.net.query({ "query": makeQuery() })).result.data;
         for (const [key, value] of Object.entries(response)) {
             volumes.push(value[0] / utils.oneTon);
             let timestamp = key.split("_")[1];

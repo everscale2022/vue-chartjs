@@ -7,6 +7,7 @@
       <router-link to="/transactions">Transactions</router-link>
       <router-link to="/DepoolsGiversUsers">Depools, Givers, Free Circulation</router-link>
       <router-link to="/surfTransactionsVolumes">Surf transactions volumes</router-link>
+      <router-link to="/spentTokensFromGivers">Spent tokens from givers</router-link>
     </div>
     <router-view/>
   </div>

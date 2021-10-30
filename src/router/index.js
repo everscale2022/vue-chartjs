@@ -23,6 +23,11 @@ const routes = [
                 path: '/DepoolsGiversUsers',
                 name: 'DepoolsGiversUsers',
                 component: ()=> import('../components/DepoolsGiversUsers.vue')
+            },
+            {
+                path: '/surfTransactionsVolumes',
+                name: 'surfTransactionsVolumes',
+                component: ()=> import('../components/surfTransactionsVolumes/Common.vue')
             }
         ]
     

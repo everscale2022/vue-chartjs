@@ -1,6 +1,6 @@
 
 const { AggregationFn, client } = require("./client/webClient");
-const commaNumber = require('comma-number')
+const commaNumber = require('comma-number');
 const utils = require('./utils');
 
 const depoolsGiversUsers = async () => {

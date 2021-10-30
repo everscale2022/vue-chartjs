@@ -2,6 +2,7 @@
   <div id="buttons" class="text-center">
     <div>
       <chart :chart-data="chartData" />
+      <div class="h3 text-info" v-show="loading">Data loading ...</div>
     </div>   
   </div>
 </template>
@@ -13,6 +14,7 @@ export default {
   data() {
     return {
       chartData: null,
+      loading: true
     };
   },
   components: {
@@ -21,6 +23,7 @@ export default {
    mounted() {
     surfTransactionsVolumes().then((r)=>{
      this.chartData = r;
+     this.loading= false;
     });         
   },
 };

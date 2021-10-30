@@ -3,7 +3,8 @@ const utils = require("./utils");
 
 function makeQuery() {
     let query = '{';
-    for (let index = 14; index > 0; index--) {
+    for (let index = 14; index >= 0; index--) {
+        console.log(index);
         let lt = utils.now - index * utils.oneDay;
         let gt = lt - utils.oneDay;
         query += `
@@ -23,6 +24,7 @@ function makeQuery() {
             )
           `;
     }
+    console.log(query);
     query += '}';  
     return query;
 }

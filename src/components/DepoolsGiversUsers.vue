@@ -1,6 +1,6 @@
 <script>
 import { Pie } from "vue-chartjs";
-import { depoolsGiversUsers } from "../api/ton";
+import { depoolsGiversUsers } from "../api/depoolsGiversUsers";
 export default {
   extends: Pie,
   data() {
@@ -24,7 +24,7 @@ export default {
         labels: data.labels,
         datasets: [
           {
-            label: "Все средства в ТОН: депулы, гиверы, свободное обращение",
+            label: "All assets in TON: Depools, Givers, Free circulation",
             backgroundColor: ["green", "blue", "red"],
             data: data.assets,
           },

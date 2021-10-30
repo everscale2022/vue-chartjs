@@ -1,4 +1,4 @@
-import {netBlocks} from '../../api/ton'
+import {netBlocks} from '../../api/netBlocks.js'
 
 export default {
     state:{

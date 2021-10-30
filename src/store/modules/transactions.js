@@ -1,4 +1,4 @@
-import { netTransactions } from '../../api/ton'
+import { netTransactions } from '../../api/netTransactions'
 
 export default {
     state: {

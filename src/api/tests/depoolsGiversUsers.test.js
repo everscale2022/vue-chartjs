@@ -1,13 +1,4 @@
-const { TonClient, AggregationFn } = require("@tonclient/core");
-const { libNode } = require("@tonclient/lib-node");
-
-TonClient.useBinaryLibrary(libNode)
-
-const client = new TonClient({
-    network: {
-        server_address: "main.ton.dev",
-    }
-});
+const { AggregationFn, client } = require("./client/nodeClient");
 
 test('Assets in depools', async () => {
     const response = await client.net.batch_query({

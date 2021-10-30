@@ -1,0 +1,11 @@
+query {
+  aggregateTransactions(
+    filter: {
+      account_addr: {
+        eq: "0:18d5c9b1994bfbddbf5aca820b4f68d4b38a7e6f2afff58d12fb466283fae6c7"
+      }
+      now: { lt: 1632038097 }
+    }
+    fields: [{ field: "balance_delta", fn: SUM }]
+  )
+}

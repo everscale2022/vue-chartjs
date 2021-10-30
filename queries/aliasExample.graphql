@@ -1,0 +1,8 @@
+query {
+  more1000: accounts(filter: { balance: { gt: "1000000000000" }  } limit: 2) {
+    balance    
+  }
+  more10000: accounts(filter: { balance: { gt: "10000000000000" } }limit: 2) {
+    balance
+  }
+}

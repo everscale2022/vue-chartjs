@@ -1,6 +1,6 @@
 <script>
 import { Pie } from "vue-chartjs";
-import { netAccounts } from "../api/ton";
+import { netAccounts } from "../api/netAccounts";
 export default {
   extends: Pie,
   data() {
@@ -10,7 +10,7 @@ export default {
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: "Распределение средств по счетам",
+          text: "Tokens on Surf accounts",
           fontSize: 25,
           fontStyle: "normal",
         },

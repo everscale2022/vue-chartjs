@@ -4,8 +4,8 @@
       <chart :chart-data="chartData" />
     </div>
     <div>
-      <span class="btn btn-info" @click="fmin"> 15 мин </span>
-      <span class="btn btn-info" @click="fhour"> 1 час </span>
+      <span class="btn btn-info" @click="fmin"> 15 min </span>
+      <span class="btn btn-info" @click="fhour"> 1 hour </span>
     </div>
   </div>
 </template>

@@ -2,9 +2,10 @@
   <div id="buttons" class="text-center">
     <div>
       <chart :chart-data="chartData" />
-      <div class="h3 text-info" v-show="loading">Data loading ...</div>
+      <div class="h5 text-info" v-show="loading">Data loading ...</div>
     </div>   
     <div>
+    <div class="h5 mt-4">Last transactions from Givers</div>
     <b-table striped hover :items="items"></b-table>
   </div>
   </div>
@@ -30,9 +31,7 @@ export default {
      this.loading= false;
     });
     lastTransactionsFromGivers().then((r)=>{
-      this.items = r;
-      console.log(r);
-      
+      this.items = r;            
     })         
   },
 };

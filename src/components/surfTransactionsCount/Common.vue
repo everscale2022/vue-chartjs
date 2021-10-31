@@ -1,0 +1,38 @@
+<template>
+  <div id="buttons" class="text-center">
+    <div>
+      <chart :chart-data="chartData" />
+      <div class="h5 text-info" v-show="loading_graphic">Data loading ...</div>
+    </div>   
+    
+  </div>
+</template>
+<script>
+import chart from "./Chart.vue";
+import {surfTransactionsCount} from "../../api/surfTransactionsCount";
+
+export default {
+  data() {
+    return {
+      chartData: null,
+      loading_graphic: true,
+      loading_table: true
+    };
+  },
+  components: {
+    chart,
+  },
+   mounted() {
+    surfTransactionsCount().then((r)=>{
+     this.chartData = r;
+     this.loading_graphic= false;
+    });             
+  },
+};
+</script>
+<style scoped>
+#buttons span {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+</style>

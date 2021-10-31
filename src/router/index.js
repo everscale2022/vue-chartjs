@@ -33,6 +33,11 @@ const routes = [
                 path: '/spentTokensFromGivers',
                 name: 'spentTokensFromGivers',
                 component: ()=> import('../components/spentTokensFromGivers/Common.vue')
+            },
+            {
+                path: '/surfTransactionsCount',
+                name: 'surfTransactionsCount',
+                component: ()=> import('../components/surfTransactionsCount/Common.vue')
             }
         ]
     

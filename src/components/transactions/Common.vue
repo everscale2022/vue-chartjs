@@ -6,11 +6,13 @@
     <div>
       <span class="btn btn-info" @click="fmin"> 15 min </span>
       <span class="btn btn-info" @click="fhour"> 1 hour </span>
+      <span class="btn btn-info" @click="fday"> 1 day </span>
     </div>
   </div>
 </template>
 <script>
 import chart from "./Chart.vue";
+import {netTransactions} from "../../api/netTransactions";
 export default {
   data() {
     return {
@@ -22,18 +24,26 @@ export default {
   },
   methods: {
     async fmin() {
-      await this.$store.dispatch("fetchTransactionsData", 15);
-      this.chartData = this.$store.getters.getDataTransactions;
+      netTransactions().then(r=>{
+      this.chartData = r;
+    })
     },
-    async fhour() {
-      await this.$store.dispatch("fetchTransactionsData", 60);
-      this.chartData = this.$store.getters.getDataTransactions;
+   fhour() {
+        netTransactions(60).then(r=>{
+        this.chartData = r;
+    })
+   },
+   fday() {
+        let interval = 60*24;
+        netTransactions(interval).then(r=>{
+        this.chartData = r;
+    })
     },
   },
   mounted() {
-    this.$store.dispatch("fetchTransactionsData", 15).then(() => {
-      this.chartData = this.$store.getters.getDataTransactions;
-    });
+    netTransactions().then(r=>{
+      this.chartData = r;
+    })
   },
 };
 </script>

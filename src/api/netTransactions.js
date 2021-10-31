@@ -1,49 +1,63 @@
-const { AggregationFn, client } = require("./client/webClient");
+const { client } = require("./client/webClient");
+const utils = require("./utils");
+
+function makeQuery(interval) {
+    interval *= 60;
+    let query = '{';
+    for (let index = 18; index >= 0; index--) {
+        let lt = utils.now - index * interval;
+        let gt = lt - interval;
+        query += `
+            data_${lt}: aggregateTransactions(
+                filter: {
+                  now: { gt: ${gt}, lt: ${lt} }
+                  balance_delta: { gt: "0" }      
+                }
+                fields: [{ field: "balance_delta", fn: COUNT }]
+              )
+          `;
+    }
+    query += '}';
+    return query;
+}
 
 const netTransactions = async (interval = 15) => {
-    let operations = [];
+    let data = [];
     let labels = [];
-    let gt = Math.round(Date.now() / 1000) - (60 * 1);
-    for (let i = 0; i < 10; i++) {
-        let lt = gt;
-        gt = lt - interval * 60;
-        let labelDate = new Date(lt * 1000)
-        labels.push(('0' + labelDate.getHours()).slice(-2) + ':' + ('0' + labelDate.getMinutes()).slice(-2));
-        operations.push({
-            type: "AggregateCollection",
-            collection: "messages",
-            fields: [
-                {
-                    field: "",
-                    fn: AggregationFn.COUNT
-                }
-            ],
-            filter: {
-                value: {
-                    ne: null
-                },
-                created_at: {
-                    lt,
-                    gt
-                }
-            }
-        })
-    }
+
     try {
-        const response = await client.net.batch_query({
-            operations
-        });
-        return {
-            tpm: response.results.map((value) => {
-                return value[0] / interval
-            }).reverse(),
-            labels: labels.reverse()
+        let response = (await client.net.query({ "query": makeQuery(interval) })).result.data;
+        for (const [key, value] of Object.entries(response)) {
+            data.push(Math.round(value[0]/interval));
+            let timestamp = key.split("_")[1];
+            let dt;
+            console.log(interval);
+            if(interval >= (24*60)){
+               dt = new Date(timestamp * 1000).toLocaleDateString("ru-RU");          
+            }else{
+               dt = new Date(timestamp * 1000).toLocaleTimeString("ru-RU");
+            }
+            
+            labels.push(dt);
         }
+       
+        return {
+            labels,
+            datasets: [
+                {
+                    label: "Average transactons in the minute",
+                    backgroundColor: "gray",
+                    data,
+                },
+            ],
+        }   
     } catch (e) {
         console.log(e);
     }
 }
 
-module.exports= {
-    netTransactions
-}
+  module.exports= {
+      netTransactions
+  }
+
+//netTransactions(24*60)

@@ -95,7 +95,6 @@ const lastTransactionsFromGivers = async ()=>{
     } catch (e) {
         console.log(e);
     }
-
 }
 module.exports = {
     spentTokensFromGivers,

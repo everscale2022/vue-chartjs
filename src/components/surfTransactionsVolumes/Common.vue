@@ -2,7 +2,7 @@
   <div id="buttons" class="text-center">
     <div>
       <chart :chart-data="chartData" />
-      <div class="h3 text-info" v-show="loading">Data loading ...</div>
+      <div class="h3 text-info" v-show="loading_graphic">Data loading ...</div>
     </div>   
      <div class="h5 mt-4">Last big(more 1 million) Surf transactions</div>
        <div class="h5 text-info" v-show="loading_table">Data loading ...</div>
@@ -27,7 +27,7 @@ export default {
    mounted() {
     surfTransactionsVolumes().then((r)=>{
      this.chartData = r;
-     this.loading= false;
+     this.loading_graphic= false;
     });     
     lastBiggestSurfTransactions().then((r)=>{
       this.items = r;    

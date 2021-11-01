@@ -1,0 +1,14 @@
+query{
+	aggregateAccounts(
+    filter:{      
+      acc_type: {
+        ne: 1
+      }
+      last_paid:{
+        lt: 1611180066
+      }
+    }
+    fields:[
+      {field: "balance", fn: COUNT}
+    ]
+  )

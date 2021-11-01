@@ -38,6 +38,11 @@ const routes = [
                 path: '/surfTransactionsCount',
                 name: 'surfTransactionsCount',
                 component: ()=> import('../components/surfTransactionsCount/Common.vue')
+            },
+            {
+                path: '/lostTons',
+                name: 'lostTons',
+                component: ()=> import('../components/lostTons/Common.vue')
             }
         ]
     

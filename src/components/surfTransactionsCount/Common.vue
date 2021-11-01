@@ -25,7 +25,7 @@ export default {
    mounted() {
     surfTransactionsCount().then((r)=>{
      this.chartData = r;
-     this.loading_graphic= false;
+     this.loading_graphic = false;
     });             
   },
 };

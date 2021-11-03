@@ -2,7 +2,7 @@
   <div id="app">
    <div class="navbar-brand mb-3">FreeTON MainNet</div>
     <div id="nav" class="mb-5">   
-      <router-link to="/accounts">Surf accounts</router-link>
+      <router-link to="/accounts">Surf accounts balances</router-link>
       <router-link to="/blocks">Blocks</router-link>
       <router-link to="/transactions">Transactions</router-link>       
       <router-link to="/surfTransactionsCount">Surf transactions count</router-link>       

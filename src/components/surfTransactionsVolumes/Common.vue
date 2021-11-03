@@ -4,7 +4,7 @@
       <chart :chart-data="chartData" />
       <div class="h3 text-info" v-show="loading_graphic">Data loading ...</div>
     </div>   
-     <div class="h5 mt-4">Last big(more 1 million) Surf transactions</div>
+     <div class="h5 mt-4">Last big(>1000 tons) Surf transactions</div>
        <div class="h5 text-info" v-show="loading_table">Data loading ...</div>
       <b-table striped hover :items="items"></b-table>
   </div>

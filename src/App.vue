@@ -11,6 +11,7 @@
     <div id="nav" class="mb-5">         
       <router-link to="/DepoolsGiversUsers">Depools, Givers, Free Circulation</router-link>
       <router-link to="/surfTransactionsVolumes">Surf transactions volumes</router-link>
+      <router-link to="/allTransactionsVolumes">All transactions volumes</router-link>
       <router-link to="/spentTokensFromGivers">Spent tokens from givers</router-link>     
       <router-link to="/lostTons">Lost tons</router-link>     
     </div>

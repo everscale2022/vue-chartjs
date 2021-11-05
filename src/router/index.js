@@ -30,6 +30,11 @@ const routes = [
                 component: ()=> import('../components/surfTransactionsVolumes/Common.vue')
             },
             {
+                path: '/allTransactionsVolumes',
+                name: 'allTransactionsVolumes',
+                component: ()=> import('../components/allTransactionsVolumes/Common.vue')
+            },
+            {
                 path: '/spentTokensFromGivers',
                 name: 'spentTokensFromGivers',
                 component: ()=> import('../components/spentTokensFromGivers/Common.vue')

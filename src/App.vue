@@ -6,6 +6,7 @@
       <router-link to="/blocks">Blocks</router-link>
       <router-link to="/transactions">Transactions</router-link>       
       <router-link to="/surfTransactionsCount">Surf transactions count</router-link>       
+      <router-link to="/dailyTransactionsCount">Daily transactions count</router-link>       
     </div>
     <div id="nav" class="mb-5">         
       <router-link to="/DepoolsGiversUsers">Depools, Givers, Free Circulation</router-link>

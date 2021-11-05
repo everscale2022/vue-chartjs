@@ -40,6 +40,11 @@ const routes = [
                 component: ()=> import('../components/surfTransactionsCount/Common.vue')
             },
             {
+                path: '/dailyTransactionsCount',
+                name: 'dailyTransactionsCount',
+                component: ()=> import('../components/dailyTransactionsCount/Common.vue')
+            },
+            {
                 path: '/lostTons',
                 name: 'lostTons',
                 component: ()=> import('../components/lostTons/Common.vue')

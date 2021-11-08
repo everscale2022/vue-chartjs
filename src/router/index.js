@@ -53,6 +53,11 @@ const routes = [
                 path: '/lostTons',
                 name: 'lostTons',
                 component: ()=> import('../components/lostTons/Common.vue')
+            },
+            {
+                path: '/Depools-vs-Free-Circulation',
+                name: 'Depools-vs-Free-Circulation',
+                component: ()=> import('../components/DepoolsFreeCirculationProportion/chart.vue')
             }
         ]
     

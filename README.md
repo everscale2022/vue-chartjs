@@ -1,4 +1,4 @@
-# tonspeed
+# EverScale charts
 
 ## Project setup
 ```

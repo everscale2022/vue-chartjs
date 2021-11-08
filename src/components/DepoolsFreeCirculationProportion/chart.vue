@@ -23,7 +23,7 @@ export default {
       id: 'Doughnut',
       beforeDraw: function(chart) {
         var width = chart.chart.width;
-        var height = chart.chart.height;
+        var height = chart.chart.height;       
         var ctx = chart.chart.ctx;
 
         ctx.restore();
@@ -33,7 +33,7 @@ export default {
 
         var text = data.TotalAssets;        
         var textX = Math.round((width - ctx.measureText(text).width) / 2);
-        var textY = height/1.7;
+        var textY = height/(1.65);        
 
          ctx.fillText(text, textX, textY);
          ctx.save();
@@ -44,16 +44,14 @@ export default {
         labels: data.labels,
         datasets: [
           {
-            label: "Depools vs. Free Circulation",
-            text:"ddddd",
+            label: "Depools vs. Free Circulation", 
             backgroundColor: ["blue", "pink"],
             data: data.assets,
           },
         ],
       },      
       this.options
-    );
-    this.textCenter(880);
+    ); 
   }
 };
 </script>

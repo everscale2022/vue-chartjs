@@ -1,8 +1,8 @@
 {
-  "name": "tonspeed",
+  "name": "everscale-charts",
   "version": "1.0.0",
   "private": true,
-  "description": "TON NETWORK SPEED MONITOR",
+  "description": "EVERSCALE NETWORK CHARTS",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

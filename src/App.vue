@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-   <div class="navbar-brand mb-3">FreeTON MainNet</div>
+   <div class="navbar-brand mb-3">EverScale MainNet</div>
     <div id="nav" class="mb-5">   
       <router-link to="/accounts">Surf accounts balances</router-link>
       <router-link to="/blocks">Blocks</router-link>
@@ -9,7 +9,7 @@
       <router-link to="/dailyTransactionsCount">Daily transactions count</router-link>       
     </div>
     <div id="nav" class="mb-5">         
-      <router-link to="/DepoolsGiversUsers">Depools, Givers, Free Circulation</router-link>
+      <router-link to="/DepoolsGiversUsers">All assets</router-link>
       <router-link to="/surfTransactionsVolumes">Surf transactions volumes</router-link>
       <router-link to="/allTransactionsVolumes">All transactions volumes</router-link>
       <router-link to="/spentTokensFromGivers">Spent tokens from givers</router-link>     

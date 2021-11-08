@@ -72,8 +72,7 @@ const depoolsGiversUsers = async () => {
     try {
         const response = await client.net.batch_query({
             operations
-        });        
-        console.log(response.results[0][0].balance);
+        });                
         const BurningAssets = Math.round(response.results[0][0].balance / utils.oneTon);
         const DepoolsAssets = Math.round(response.results[1][0] / utils.oneTon);
         const GiversAssets = Math.round(response.results[2][0] / utils.oneTon);

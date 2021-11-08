@@ -25,7 +25,7 @@ export default {
         datasets: [
           {
             label: "All assets in TON: Depools, Givers, Free circulation",
-            backgroundColor: ["green", "blue", "red"],
+            backgroundColor: ["#e25822","green", "blue", "pink"],
             data: data.assets,
           },
         ],

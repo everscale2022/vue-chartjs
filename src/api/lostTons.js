@@ -1,7 +1,6 @@
 const { client } = require("./client/webClient");
 const utils = require("./utils");
 const commaNumber = require('comma-number');
-const allAssets = require("./depoolsGiversUsers");
 
 function makeQuery() {
     let query = '{';
@@ -56,8 +55,21 @@ const lostTons = async () => {
 }
 
 const lostTonsSum = async () => {
-    try {       
-        return commaNumber(Math.round(allAssets.lostTons / utils.oneTon));
+    try {
+        let response = (await client.net.query({
+            "query": `        
+            {aggregateAccounts(
+            filter:{      
+              acc_type: {
+                ne: 1
+              }              
+            }
+            fields:[
+              {field: "balance", fn: SUM}
+            ]
+          )}
+        ` })).result.data.aggregateAccounts[0];
+        return commaNumber(Math.round(response / utils.oneTon));
     } catch (e) {
         console.log(e);
     }

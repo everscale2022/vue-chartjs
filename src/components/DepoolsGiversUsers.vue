@@ -10,7 +10,7 @@ export default {
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: "All assets in TON",
+          text: "All assets",
           fontSize: 25,
           fontStyle: "normal",
         },
@@ -24,7 +24,7 @@ export default {
         labels: data.labels,
         datasets: [
           {
-            label: "All assets in TON: Depools, Givers, Free circulation",
+            label: "All assets in EverScale: Depools, Givers, Burned Free circulation",
             backgroundColor: ["#e25822","green", "blue", "pink", "black"],
             data: data.assets,
           },

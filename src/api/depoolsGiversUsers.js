@@ -110,11 +110,11 @@ const depoolsGiversUsers = async () => {
                 coldTonsAssets
             ],
             labels: [
-                `BURNING: ${commaNumber(BurningAssets)} TON (${BurningAssetsPercents})%`,
-                `DEPOOLS: ${commaNumber(DepoolsAssets)} TON (${DepoolsAssetsPercents})%`,
-                `GIVERS: ${commaNumber(GiversAssets)} TON (${GiversAssetsPercents})%`,
-                `FREE CIRCULATION: ${commaNumber(UsersAssets)} TON (${UsersAssetsPercents})%`,
-                `cold TONS: ${commaNumber(coldTonsAssets)} TON (${coldTonsPercents})%`
+                `BURNING: ${commaNumber(BurningAssets)} EVER (${BurningAssetsPercents})%`,
+                `DEPOOLS: ${commaNumber(DepoolsAssets)} EVER (${DepoolsAssetsPercents})%`,
+                `GIVERS: ${commaNumber(GiversAssets)} EVER (${GiversAssetsPercents})%`,
+                `FREE CIRCULATION: ${commaNumber(UsersAssets)} EVER (${UsersAssetsPercents})%`,
+                `COLD EVERS: ${commaNumber(coldTonsAssets)} EVER (${coldTonsPercents})%`
             ]
         }
     } catch (e) {

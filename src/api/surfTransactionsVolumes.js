@@ -86,7 +86,7 @@ const lastBiggestSurfTransactions = async () => {
                 'Transactions ID': v.id,
                 'Account address': v.account_addr,
                 'Time': v.now_string,
-                'Tokens': `${commaNumber(Math.round(v.balance_delta / 1_000_000_000))} TONs`
+                'Tokens': `${commaNumber(Math.round(v.balance_delta / 1_000_000_000))} EVERs`
             }
         });
     } catch (e) {

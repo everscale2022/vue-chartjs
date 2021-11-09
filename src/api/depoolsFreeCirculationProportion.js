@@ -13,8 +13,8 @@ const depoolsFreeCirculationProportion = async () => {
             response.assets[3],
         ],
         labels: [
-            `DEPOOLS: ${commaNumber(response.assets[1])} TON (${DepoolsAssetsPercents})%`,
-            `FREE CIRCULATION: ${commaNumber(response.assets[3])} TON (${UsersAssetsPercents})%`,
+            `DEPOOLS: ${commaNumber(response.assets[1])} EVER (${DepoolsAssetsPercents})%`,
+            `FREE CIRCULATION: ${commaNumber(response.assets[3])} EVER (${UsersAssetsPercents})%`,
         ],
         TotalAssets: commaNumber(TotalAssets)
     }

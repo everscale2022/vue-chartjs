@@ -11,7 +11,7 @@
 </template>
 <script>
 import chart from "./Chart.vue";
-import {lostTons, lostTonsSum, lostTonsAccounts, totalAccountsCount} from "../../api/lostTons";
+import {coldTons, coldTonsSum, coldTonsAccounts, totalAccountsCount} from "../../api/coldTons";
 
 export default {
   data() {
@@ -27,14 +27,14 @@ export default {
     chart,
   },
    mounted() {
-    lostTons().then((r)=>{     
+    coldTons().then((r)=>{     
      this.chartData = r;
      this.loading_graphic= false;
     });     
-    lostTonsSum().then((r)=>{     
+    coldTonsSum().then((r)=>{     
      this.totalAmount = `Total amount: ${r} tons`;     
     });  
-    lostTonsAccounts().then((r)=>{     
+    coldTonsAccounts().then((r)=>{     
      this.items = r;     
     }); 
     totalAccountsCount().then((r)=>{     

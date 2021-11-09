@@ -27,7 +27,7 @@ function makeQuery() {
     return query;
 }
 
-const lostTons = async () => {
+const coldTons = async () => {
     let volumes = [];
     let labels = [];
 
@@ -42,7 +42,7 @@ const lostTons = async () => {
         return {
             datasets: [
                 {
-                    label: "Lost tons",
+                    label: "cold tons",
                     backgroundColor: "lightgray",
                     data: volumes,
                 },
@@ -54,7 +54,7 @@ const lostTons = async () => {
     }
 }
 
-const lostTonsSum = async () => {
+const coldTonsSum = async () => {
     try {
         let response = (await client.net.query({
             "query": `        
@@ -95,7 +95,7 @@ const totalAccountsCount = async () => {
     }
 }
 
-const lostTonsAccounts = async () => {
+const coldTonsAccounts = async () => {
     try {
         let response = (await client.net.query({
             "query": `        
@@ -126,9 +126,9 @@ const lostTonsAccounts = async () => {
 }
 
 module.exports = {
-    lostTons,
-    lostTonsSum,
-    lostTonsAccounts,
+    coldTons,
+    coldTonsSum,
+    coldTonsAccounts,
     totalAccountsCount
 }
-//lostTons();
+//coldTons();

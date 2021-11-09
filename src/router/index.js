@@ -50,9 +50,9 @@ const routes = [
                 component: ()=> import('../components/dailyTransactionsCount/Common.vue')
             },
             {
-                path: '/lostTons',
-                name: 'lostTons',
-                component: ()=> import('../components/lostTons/Common.vue')
+                path: '/coldTons',
+                name: 'coldTons',
+                component: ()=> import('../components/coldTons/Common.vue')
             },
             {
                 path: '/Depools-vs-Free-Circulation',

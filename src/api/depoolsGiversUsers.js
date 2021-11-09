@@ -50,7 +50,8 @@ const depoolsGiversUsers = async () => {
                 in: [
                     "-1:7777777777777777777777777777777777777777777777777777777777777777",
                     "-1:8888888888888888888888888888888888888888888888888888888888888888",
-                    "-1:9999999999999999999999999999999999999999999999999999999999999999"
+                    "-1:9999999999999999999999999999999999999999999999999999999999999999",
+                    "0:fee1a3bd261619f036d83aafd8b34f47d794bbb58185379877291003f3a3526d"
                 ]
             }
         }
@@ -67,7 +68,7 @@ const depoolsGiversUsers = async () => {
         ]
     }
 
-    const lostTons = (await client.net.query({
+    const coldTons = (await client.net.query({
         "query": `        
             {aggregateAccounts(
             filter:{      
@@ -91,14 +92,14 @@ const depoolsGiversUsers = async () => {
         const DepoolsAssets = Math.round(response.results[1][0] / utils.oneTon);
         const GiversAssets = Math.round(response.results[2][0] / utils.oneTon);
         const TotalAssets = Math.round(response.results[3][0] / utils.oneTon);
-        const LostTonsAssets = Math.round(lostTons / utils.oneTon);
-        const UsersAssets = TotalAssets - GiversAssets - DepoolsAssets - BurningAssets - LostTonsAssets;
+        const coldTonsAssets = Math.round(coldTons / utils.oneTon);
+        const UsersAssets = TotalAssets - GiversAssets - DepoolsAssets - BurningAssets - coldTonsAssets;
  
         const BurningAssetsPercents = Math.round(BurningAssets / TotalAssets * 100);
         const DepoolsAssetsPercents = Math.round(DepoolsAssets / TotalAssets * 100);
         const GiversAssetsPercents = Math.round(GiversAssets / TotalAssets * 100);
         const UsersAssetsPercents = Math.round(UsersAssets / TotalAssets * 100);
-        const LostTonsPercents = Math.round(LostTonsAssets / TotalAssets * 100);
+        const coldTonsPercents = Math.round(coldTonsAssets / TotalAssets * 100);
 
         return {
             assets: [
@@ -106,14 +107,14 @@ const depoolsGiversUsers = async () => {
                 DepoolsAssets,
                 GiversAssets,
                 UsersAssets,
-                LostTonsAssets
+                coldTonsAssets
             ],
             labels: [
                 `BURNING: ${commaNumber(BurningAssets)} TON (${BurningAssetsPercents})%`,
                 `DEPOOLS: ${commaNumber(DepoolsAssets)} TON (${DepoolsAssetsPercents})%`,
                 `GIVERS: ${commaNumber(GiversAssets)} TON (${GiversAssetsPercents})%`,
                 `FREE CIRCULATION: ${commaNumber(UsersAssets)} TON (${UsersAssetsPercents})%`,
-                `LOST TONS: ${commaNumber(LostTonsAssets)} TON (${LostTonsPercents})%`
+                `cold TONS: ${commaNumber(coldTonsAssets)} TON (${coldTonsPercents})%`
             ]
         }
     } catch (e) {

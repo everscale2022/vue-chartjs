@@ -1,6 +1,6 @@
 const { AggregationFn, client } = require("./client/nodeClient");
 
-test('Assets in depools', async () => {
+test('Assets in stakes', async () => {
     const response = await client.net.batch_query({
         operations: [{
             type: "AggregateCollection",

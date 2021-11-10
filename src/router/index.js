@@ -20,9 +20,9 @@ const routes = [
                 component: ()=> import('../components/transactions/Common.vue')
             },
             {
-                path: '/DepoolsGiversUsers',
-                name: 'DepoolsGiversUsers',
-                component: ()=> import('../components/DepoolsGiversUsers.vue')
+                path: '/StakesGiversUsers',
+                name: 'StakesGiversUsers',
+                component: ()=> import('../components/StakesGiversUsers.vue')
             },
             {
                 path: '/surfTransactionsVolumes',
@@ -55,9 +55,9 @@ const routes = [
                 component: ()=> import('../components/coldTons/Common.vue')
             },
             {
-                path: '/Depools-vs-Free-Circulation',
-                name: 'Depools-vs-Free-Circulation',
-                component: ()=> import('../components/DepoolsFreeCirculationProportion/chart.vue')
+                path: '/Stakes-vs-Free-Circulation',
+                name: 'Stakes-vs-Free-Circulation',
+                component: ()=> import('../components/StakesFreeCirculationProportion/chart.vue')
             }
         ]
     

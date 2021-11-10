@@ -9,13 +9,13 @@
       <router-link to="/dailyTransactionsCount">Daily transactions count</router-link>       
     </div>
     <div id="nav" class="mb-5">         
-      <router-link to="/DepoolsGiversUsers">All assets</router-link>
+      <router-link to="/StakesGiversUsers">All assets</router-link>
       <router-link to="/surfTransactionsVolumes">Surf transactions volumes</router-link>
       <router-link to="/allTransactionsVolumes">All transactions volumes</router-link>
       <router-link to="/spentTokensFromGivers">Spent tokens from givers</router-link>     
-      <router-link to="/coldTons">Cold tons</router-link>     
+      <router-link to="/coldTons">Cold evers</router-link>     
     </div><div id="nav" class="mb-5">         
-      <router-link to="/Depools-vs-Free-Circulation">Depools vs. Free circulation</router-link>     
+      <router-link to="/Stakes-vs-Free-Circulation">Stakes vs. Free circulation</router-link>     
     </div>
      
     <router-view class="mt-4"/>

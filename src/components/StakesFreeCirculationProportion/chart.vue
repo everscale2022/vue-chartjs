@@ -1,6 +1,6 @@
 <script>
 import { Doughnut } from "vue-chartjs";
-import { depoolsFreeCirculationProportion } from "../../api/depoolsFreeCirculationProportion";
+import { stakesFreeCirculationProportion } from "../../api/stakesFreeCirculationProportion";
 export default {
   extends: Doughnut,
   data() {
@@ -10,7 +10,7 @@ export default {
         maintainAspectRatio: false,
         title: {
           display: true,
-          text: "Depools vs. Free Circulation",
+          text: "Stakes vs. Free Circulation",
           fontSize: 25,
           fontStyle: "normal",
         },
@@ -18,7 +18,7 @@ export default {
     };
   },
   async mounted() {   
-      const data = await depoolsFreeCirculationProportion();        
+      const data = await stakesFreeCirculationProportion();        
       this.addPlugin({
       id: 'Doughnut',
       beforeDraw: function(chart) {
@@ -44,7 +44,7 @@ export default {
         labels: data.labels,
         datasets: [
           {
-            label: "Depools vs. Free Circulation", 
+            label: "Stakes vs. Free Circulation", 
             backgroundColor: ["blue", "pink"],
             data: data.assets,
           },

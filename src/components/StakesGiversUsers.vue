@@ -1,6 +1,6 @@
 <script>
 import { Pie } from "vue-chartjs";
-import { depoolsGiversUsers } from "../api/depoolsGiversUsers";
+import { stakesGiversUsers } from "../api/stakesGiversUsers";
 export default {
   extends: Pie,
   data() {
@@ -18,13 +18,13 @@ export default {
     };
   },
   async mounted() {     
-    const data = await depoolsGiversUsers();        
+    const data = await stakesGiversUsers();        
       this.renderChart(
       {
         labels: data.labels,
         datasets: [
           {
-            label: "All assets in EverScale: Depools, Givers, Burned Free circulation",
+            label: "All assets in EverScale: Stakes, Givers, Burned Free circulation",
             backgroundColor: ["#e25822","green", "blue", "pink", "black"],
             data: data.assets,
           },

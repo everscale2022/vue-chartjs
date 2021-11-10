@@ -3,7 +3,7 @@ const { AggregationFn, client } = require("./client/webClient");
 const commaNumber = require('comma-number');
 const utils = require('./utils');
 
-const depoolsGiversUsers = async () => {
+const stakesGiversUsers = async () => {
     const Burning =
     {
         type: "QueryCollection",
@@ -16,7 +16,7 @@ const depoolsGiversUsers = async () => {
         result: "balance(format:DEC)",
     }
         ;
-    const Depools =
+    const Stakes =
     {
         type: "AggregateCollection",
         collection: "accounts",
@@ -82,21 +82,21 @@ const depoolsGiversUsers = async () => {
           )}
         ` })).result.data.aggregateAccounts[0];
 
-    const operations = [Burning, Depools, Givers, Total];
+    const operations = [Burning, Stakes, Givers, Total];
 
     try {
         const response = await client.net.batch_query({
             operations
         });
         const BurningAssets = Math.round(response.results[0][0].balance / utils.oneTon);
-        const DepoolsAssets = Math.round(response.results[1][0] / utils.oneTon);
+        const StakesAssets = Math.round(response.results[1][0] / utils.oneTon);
         const GiversAssets = Math.round(response.results[2][0] / utils.oneTon);
         const TotalAssets = Math.round(response.results[3][0] / utils.oneTon);
         const coldTonsAssets = Math.round(coldTons / utils.oneTon);
-        const UsersAssets = TotalAssets - GiversAssets - DepoolsAssets - BurningAssets - coldTonsAssets;
+        const UsersAssets = TotalAssets - GiversAssets - StakesAssets - BurningAssets - coldTonsAssets;
  
         const BurningAssetsPercents = Math.round(BurningAssets / TotalAssets * 100);
-        const DepoolsAssetsPercents = Math.round(DepoolsAssets / TotalAssets * 100);
+        const StakesAssetsPercents = Math.round(StakesAssets / TotalAssets * 100);
         const GiversAssetsPercents = Math.round(GiversAssets / TotalAssets * 100);
         const UsersAssetsPercents = Math.round(UsersAssets / TotalAssets * 100);
         const coldTonsPercents = Math.round(coldTonsAssets / TotalAssets * 100);
@@ -104,17 +104,17 @@ const depoolsGiversUsers = async () => {
         return {
             assets: [
                 BurningAssets,
-                DepoolsAssets,
+                StakesAssets,
                 GiversAssets,
                 UsersAssets,
                 coldTonsAssets
             ],
             labels: [
-                `BURNING: ${commaNumber(BurningAssets)} EVER (${BurningAssetsPercents})%`,
-                `DEPOOLS: ${commaNumber(DepoolsAssets)} EVER (${DepoolsAssetsPercents})%`,
-                `GIVERS: ${commaNumber(GiversAssets)} EVER (${GiversAssetsPercents})%`,
-                `FREE CIRCULATION: ${commaNumber(UsersAssets)} EVER (${UsersAssetsPercents})%`,
-                `COLD EVERS: ${commaNumber(coldTonsAssets)} EVER (${coldTonsPercents})%`
+                `BURNING: ${commaNumber(BurningAssets)} EVERs(${BurningAssetsPercents})%`,
+                `STAKES: ${commaNumber(StakesAssets)} EVERs(${StakesAssetsPercents})%`,
+                `GIVERS: ${commaNumber(GiversAssets)} EVERs(${GiversAssetsPercents})%`,
+                `FREE CIRCULATION: ${commaNumber(UsersAssets)} EVERs(${UsersAssetsPercents})%`,
+                `COLD EVERS: ${commaNumber(coldTonsAssets)} EVERs(${coldTonsPercents})%`
             ]
         }
     } catch (e) {
@@ -123,5 +123,5 @@ const depoolsGiversUsers = async () => {
 }
 
 module.exports = {
-    depoolsGiversUsers
+    stakesGiversUsers
 }

@@ -42,7 +42,7 @@ const coldTons = async () => {
         return {
             datasets: [
                 {
-                    label: "cold tons",
+                    label: "Cold EVERs",
                     backgroundColor: "lightgray",
                     data: volumes,
                 },

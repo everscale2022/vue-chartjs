@@ -16,6 +16,7 @@
       <router-link to="/coldTons">Cold evers</router-link>     
     </div><div id="nav" class="mb-5">         
       <router-link to="/Stakes-vs-Free-Circulation">Stakes vs. Free circulation</router-link>     
+      <router-link to="/newSurfAccounts">New Surf Accounts</router-link>     
     </div>
      
     <router-view class="mt-4"/>

@@ -58,6 +58,11 @@ const routes = [
                 path: '/Stakes-vs-Free-Circulation',
                 name: 'Stakes-vs-Free-Circulation',
                 component: ()=> import('../components/StakesFreeCirculationProportion/chart.vue')
+            },
+            {
+                path: '/newSurfAccounts',
+                name: 'newSurfAccounts',
+                component: ()=> import('../components/newSurfAccounts/Common.vue')
             }
         ]
     

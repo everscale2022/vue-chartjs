@@ -2,10 +2,10 @@ const { client } = require("./client/webClient");
 const utils = require("./utils");
 
 
-function makeQuery() {
+function makeQuery(interval, intervalCount) {
     let query = '{';
-    for (let index = 12; index >= 0; index--) {
-        let lt = utils.now - index * utils.oneMonth;
+    for (let index = intervalCount; index >= 0; index--) {
+        let lt = utils.now - index * interval;
        // let gt = lt - utils.oneMonth;
         query += `
             data_${lt}: aggregateAccounts(
@@ -23,12 +23,12 @@ function makeQuery() {
     return query;
 }
 
-const newSurfAccounts = async () => {
+const newSurfAccounts = async (interval = utils.oneMonth, intervalCount = 12) => {
     let accounts = [];
     let labels = [];
 
     try {
-        let response =  (await client.net.query({ "query": makeQuery() })).result.data;
+        let response =  (await client.net.query({ "query": makeQuery(interval, intervalCount) })).result.data;
         for (const [key, value] of Object.entries(response)) {
             accounts.push(value[0]);
             let timestamp = key.split("_")[1];

@@ -3,7 +3,7 @@ const utils = require("./utils");
 
 function makeQuery() {
     let query = '{';
-    for (let index = 14; index >= 0; index--) {
+    for (let index = 30; index >= 0; index--) {
         let lt = utils.now - index * utils.oneDay;
         let gt = lt - utils.oneDay;
         query += `
@@ -40,7 +40,7 @@ const kunaActivity = async () => {
             datasets: [
                 {
                     label: "Moving Evers on KUNA",
-                    backgroundColor: "lightblue",
+                    backgroundColor: "pink",
                     data: volumes,
                 },
             ],

@@ -1,8 +1,8 @@
 <script>
-import { Pie } from "vue-chartjs";
-import { netAccounts } from "../api/netAccounts";
+import { Doughnut } from "vue-chartjs";
+import { netAccounts, totalBalanceOnSurfAccounts} from "../api/netAccounts";
 export default {
-  extends: Pie,
+  extends: Doughnut,
   data() {
     return {
       options: {
@@ -19,6 +19,27 @@ export default {
   },
   async mounted() {
     const data = await netAccounts();
+    const balance = await totalBalanceOnSurfAccounts();
+    this.addPlugin({
+      id: 'Doughnut',
+      beforeDraw: function(chart) {
+        var width = chart.chart.width;
+        var height = chart.chart.height;       
+        var ctx = chart.chart.ctx;
+
+        ctx.restore();
+        var fontSize = (height / 314).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+
+        var text = `${balance} EVERs`;        
+        var textX = Math.round((width - ctx.measureText(text).width) / 2);
+        var textY = height/(1.65);        
+
+         ctx.fillText(text, textX, textY);
+         ctx.save();
+       }
+     });    
       this.renderChart(
       {
         labels: data.labels,

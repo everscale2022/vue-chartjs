@@ -38,7 +38,7 @@ const newSurfAccounts = async (interval = utils.oneMonth, intervalCount = 12) =>
         return {
             datasets: [
                 {
-                    label: "New Surf accounts",
+                    label: "Surf accounts",
                     backgroundColor: "lightblue",
                     data: accounts,
                 },

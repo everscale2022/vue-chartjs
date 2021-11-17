@@ -1,4 +1,6 @@
 const { AggregationFn, client } = require("./client/webClient");
+const { surfCodeHash, oneTon } = require("./utils");
+const commaNumber = require('comma-number');
 
 const netAccounts = async () => {
     let operations = [];
@@ -43,7 +45,7 @@ const netAccounts = async () => {
             ],
             filter: {
                 code_hash: {
-                    eq: "207dc560c5956de1a2c1479356f8f3ee70a59767db2bf4788b1d61ad42cdad82"
+                    eq: surfCodeHash
                 },
                 balance: {
                     gt: value.gt,
@@ -70,12 +72,37 @@ const netAccounts = async () => {
         data.labels = data.labels.map((value, index) => {
             return `${value} ${Math.round(data.accounts[index] / totalAccounts * 100)}%`;
         })
-
+        data.totalAccounts = totalAccounts;
         return data;
     } catch (e) {
         console.log(e);
     }
 }
+const totalBalanceOnSurfAccounts = async () => {
+    const query = `query {
+    aggregateAccounts(
+      filter: {
+        code_hash: {
+          eq: "207dc560c5956de1a2c1479356f8f3ee70a59767db2bf4788b1d61ad42cdad82"
+        }
+      }
+      fields: [{ field: "balance", fn: SUM }]
+    )
+  }`;
+    try {
+        const response = await client.net.query({
+            query
+        });
+
+       return commaNumber(Math.round(
+           response.result.data.aggregateAccounts[0]/oneTon/1000
+           ))+'k';
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 module.exports = {
-    netAccounts
+    netAccounts,
+    totalBalanceOnSurfAccounts
 }

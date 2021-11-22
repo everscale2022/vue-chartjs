@@ -107,7 +107,7 @@ const lastBiggestExchangeTransactions = async () => {
         return response.map((v) => {
             return { 
                 'Transaction id': v.id,              
-                'Exchange': findExchangeName(v.account_addr),
+                'Exchange': findExchangeName(v.account_addr).toUpperCase(),
                 'Time': v.now_string,
                 'Tokens': `${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
             }
@@ -132,11 +132,12 @@ const exchangesData = async (exchange) => {
             let dt = new Date(timestamp * 1000).toLocaleDateString("ru-RU");
             labels.push(dt);
         }
+        console.log(utils.getRandomColor());
         return {
             datasets: [
                 {
-                    label: `Moving Evers on ${name}`,
-                    backgroundColor: "pink",
+                    label: `Moving Evers on ${name.toUpperCase()}`,
+                    backgroundColor: utils.getRandomColor(),
                     data: volumes,
                 },
             ],

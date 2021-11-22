@@ -6,13 +6,13 @@
       <div class="h3 text-info" v-show="loading_graphic">Data loading ...</div>
     </div>      
     <div>     
-      <b-dropdown id="dropdown-1" :text="dropdownButton" class="m-md-2 mt-5">
-        <b-dropdown-item @click="exchange(e)" v-for="e in exchanges" :key="Object.keys(e)[0]" >
-          {{ Object.keys(e)[0] }}
+      <b-dropdown id="dropdown-1" :text="dropdownButton.toUpperCase()" class="m-md-2 mt-5">
+        <b-dropdown-item @click="exchange(e)" v-for="e in exchanges" :key="Object.keys(e)[0].toUpperCase()" >
+          {{ Object.keys(e)[0].toUpperCase() }}
         </b-dropdown-item>        
       </b-dropdown>
     </div>     
-    <div class="h5 mt-4">Last (>1000 Evers) transactions</div>
+    <div class="h5 mt-4">Last transactions</div>
         <div class="h5 text-info" v-show="loading_table">Data loading ...</div>
         <b-table striped hover :items="items"></b-table>
     </div>   

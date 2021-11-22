@@ -65,9 +65,9 @@ const routes = [
                 component: ()=> import('../components/newSurfAccounts/Common.vue')
             },
             {
-                path: '/kunaActivity',
-                name: 'kunaActivity',
-                component: ()=> import('../components/kunaActivity/Common.vue')
+                path: '/exchanges',
+                name: 'exchanges',
+                component: ()=> import('../components/Exchanges/Common.vue')
             }
         ]
     

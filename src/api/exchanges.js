@@ -109,7 +109,7 @@ const lastBiggestExchangeTransactions = async () => {
                 'Transaction id': v.id,              
                 'Exchange': findExchangeName(v.account_addr).toUpperCase(),
                 'Time': v.now_string,
-                'Tokens': `${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
+                'Tokens': `${utils.whale(Math.abs(v.balance_delta))} ${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
             }
         });
     } catch (e) {

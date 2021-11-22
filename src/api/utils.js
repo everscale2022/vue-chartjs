@@ -34,6 +34,13 @@ function direction(value){
     return '↖'; 
 }
 
+function whale(amount){
+    if(amount > 10_000_000_000_000){
+        return '🐋';
+    }
+    return '';
+}
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -57,5 +64,6 @@ module.exports = {
     now,
     exchanges,
     direction,
-    getRandomColor
+    getRandomColor,
+    whale
 }

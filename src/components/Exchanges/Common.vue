@@ -25,8 +25,9 @@
 <script>
 import chart from "./Chart.vue";
 import {exchangesData, lastBiggestExchangeTransactions, getExchangesIds} from "../../api/exchanges";
-import {exchanges} from "../../api/utils";
+const utils = require("../../api/utils");
 const commaNumber = require('comma-number');
+const exchanges = [{"All exchanges": getExchangesIds()}].concat(utils.exchanges); 
 
 export default {
   data() {

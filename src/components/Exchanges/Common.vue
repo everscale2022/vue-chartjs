@@ -24,7 +24,7 @@
 </template>
 <script>
 import chart from "./Chart.vue";
-import {exchangesData, lastBiggestExchangeTransactions} from "../../api/exchanges";
+import {exchangesData, lastBiggestExchangeTransactions, getExchangesIds} from "../../api/exchanges";
 import {exchanges} from "../../api/utils";
 const commaNumber = require('comma-number');
 
@@ -35,7 +35,7 @@ export default {
       loading_graphic: true,
       loading_table: true,
       exchanges,
-      dropdownButton: "Bitcoin-hitbtc",
+      dropdownButton: "ALL EXCHANGES",
       total: null,
       trend: null
     };
@@ -52,7 +52,8 @@ export default {
     },
   },
    mounted() {
-    exchangesData(exchanges[0]).then((r)=>{
+     const exchanges = [{"All exchanges": getExchangesIds()}].concat(exchanges); 
+     exchangesData(exchanges[0]).then((r)=>{          
      this.dropdownButton =  Object.keys(exchanges[0])[0];
      this.chartData = r;
      this.loading_graphic= false;

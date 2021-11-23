@@ -12,7 +12,12 @@
         </b-dropdown-item>        
       </b-dropdown>
     </div>     
+    <div>
+      <span class="h1">{{trend}} </span>
+      <span v-if="trend!==null">Advantage: {{ total }} Evers</span>
+    </div>
     <div class="h5 mt-4">Last transactions</div>
+        <div></div>
         <div class="h5 text-info" v-show="loading_table">Data loading ...</div>
         <b-table striped hover :items="items"></b-table>
     </div>   
@@ -21,6 +26,7 @@
 import chart from "./Chart.vue";
 import {exchangesData, lastBiggestExchangeTransactions} from "../../api/exchanges";
 import {exchanges} from "../../api/utils";
+const commaNumber = require('comma-number');
 
 export default {
   data() {
@@ -29,7 +35,9 @@ export default {
       loading_graphic: true,
       loading_table: true,
       exchanges,
-      dropdownButton: "Bitcoin-hitbtc"
+      dropdownButton: "Bitcoin-hitbtc",
+      total: null,
+      trend: null
     };
   },
   components: {
@@ -50,7 +58,14 @@ export default {
      this.loading_graphic= false;
     });   
     lastBiggestExchangeTransactions().then((r)=>{
-      this.items = r;    
+      this.items = r.dataTable;    
+      this.total = commaNumber(r.total);
+      if(r.total < 10000){
+        this.trend = '🐂';
+      }
+      if(r.total > 10000){
+        this.trend = '🐻'
+      }
       this.loading_table = false;        
     })               
   },

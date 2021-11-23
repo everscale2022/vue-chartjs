@@ -82,36 +82,25 @@ function transQuery() {
     return query;
 }
 
-function findExchangeName(a) {
-    var name;
-    utils.exchanges.forEach((value) => {
-        let addr = Object.values(value)[0];
-        let key = Object.keys(value)[0];
-        if (Array.isArray(addr)) {
-            addr.forEach(value => {
-                if (value == a) {
-                    name = key;
-                }
-            })
-        } else if (addr == a) {
-            name = key;
-        }
-    });
-    return name;
-}
-
 const lastBiggestExchangeTransactions = async () => {
    let query = transQuery();
     try {
         let response = (await client.net.query({ "query": query })).result.data.transactions;
-        return response.map((v) => {
+        var total = 0;
+        const dataTable = response.map((v) => {
+            total += Math.round(Number(v.balance_delta) / utils.oneTon);
             return { 
                 'Transaction id': v.id,              
-                'Exchange': findExchangeName(v.account_addr).toUpperCase(),
+                'Exchange': utils.findExchangeName(v.account_addr).toUpperCase(),
                 'Time': v.now_string,
                 'Tokens': `${utils.whale(Math.abs(v.balance_delta))} ${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
             }
         });
+
+        return {
+            total,
+            dataTable
+        }
     } catch (e) {
         console.log(e);
     }

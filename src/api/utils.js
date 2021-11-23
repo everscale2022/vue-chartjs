@@ -49,6 +49,24 @@ function getRandomColor() {
     }
     return color;
   }
+
+  function findExchangeName(a) {
+    var name;
+    exchanges.forEach((value) => {
+        let addr = Object.values(value)[0];
+        let key = Object.keys(value)[0];
+        if (Array.isArray(addr)) {
+            addr.forEach(value => {
+                if (value == a) {
+                    name = key;
+                }
+            })
+        } else if (addr == a) {
+            name = key;
+        }
+    });
+    return name;
+}  
   
 
 const now = Math.round(Date.now() / 1000);
@@ -65,5 +83,6 @@ module.exports = {
     exchanges,
     direction,
     getRandomColor,
-    whale
+    whale,
+    findExchangeName
 }

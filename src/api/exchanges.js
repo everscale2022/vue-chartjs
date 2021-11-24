@@ -11,16 +11,26 @@ function formatAddr(addr) {
         return `eq: "${addr}"`
     }
 }
+function interval(i){   
+    var start = new Date();
+    start.setUTCHours(0,0,0,0);        
+    let lt = Math.round(start/1000) - (i-1) * utils.oneDay;
+    let gt = lt - utils.oneDay;    
+    if(i == 0){
+        lt = utils.now;
+        gt = Math.round(start/1000);
+    }   
+    return {gt, lt};
+}
 function exchangeDataQuery(addr) {
     addr = formatAddr(addr);
     let query = '{';
-    for (let index = 30; index >= 0; index--) {
-        let lt = utils.now - index * utils.oneDay;
-        let gt = lt - utils.oneDay;
+    for (let index = 30; index >= 0; index--) {       
+        let i = interval(index);
         query += `
-            data_${lt}: aggregateTransactions(
+            data_${i.gt}: aggregateTransactions(
                 filter: {      
-                now: { gt: ${gt} lt: ${lt}}                
+                now: { gt: ${i.gt} lt: ${i.lt}}                
                 account:{
                 id:{
                     ${addr}
@@ -74,7 +84,7 @@ function transQuery() {
             ) {
               id
               balance_delta(format: DEC)
-              now_string
+              now
               account_addr
             }
           }`;
@@ -92,7 +102,7 @@ const lastBiggestExchangeTransactions = async () => {
             return { 
                 'Transaction id': v.id,              
                 'Exchange': utils.findExchangeName(v.account_addr).toUpperCase(),
-                'Time': v.now_string,
+                'Time': utils.formatTime(v.now),
                 'Tokens': `${utils.whale(Math.abs(v.balance_delta))} ${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
             }
         });

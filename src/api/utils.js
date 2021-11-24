@@ -36,9 +36,9 @@ function direction(value){
 
 function whale(amount){
     if(amount > 10_000_000_000_000){
-        return '🐋';
+        return '🐳';
     }
-    return '';
+    return ''; 
 }
 
 function getRandomColor() {
@@ -71,6 +71,10 @@ function getRandomColor() {
 
 const now = Math.round(Date.now() / 1000);
 
+function formatTime(timeSeconds){     
+    return ((new Date(timeSeconds*1000)).toLocaleString());
+}
+
 module.exports = {
     oneTon,
     oneDay,
@@ -84,5 +88,6 @@ module.exports = {
     direction,
     getRandomColor,
     whale,
-    findExchangeName
+    findExchangeName,
+    formatTime
 }

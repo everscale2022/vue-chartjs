@@ -15,7 +15,11 @@ const exchanges = [
     { "bitrue.com": "0:dea68d5ba2998b48ffd98e8bc3c8b1716aaa2a41fe3ca6c40a1dd9a3d9334e88" },
     { "cex.io": "0:ff72a20b00b647eb536bf2f9e7f5f07bc20ff5d6a93342e81e39d6db7e20fe59" },
     { "Coin-Galaxy.com": "0:0dc78eee043a0c1d301552ac0b3c131a22c7212189a646b10a0059aef3515e9b" },
-    { "coineal.com": "0:0dd48e220aef64f79fd563e150be51d12515623b6344da03c97e70ef6801a139" },
+    { "coineal.com": [
+        "0:0dd48e220aef64f79fd563e150be51d12515623b6344da03c97e70ef6801a139",
+        "0:a0c77f59b513c41f9d93a2e2144625cab74983c6da4afa0ddcbdee0e36c3efff" 
+    ]
+    },
     { "coins.black": "0:e9c6d46c7f8fa0f13221dd221db51d6aac7e51a2b75d65dad81dc1ce2fbd285e" },
     { "digifinex.asia": "0:a7cba00b37563e504d879338f09594a4be88f240b016843c1ad03a11538d0a9b" },
     { "gate.io": "0:3addd84bf73267312a477049fd9b8db761bf39c585c150f8e6f9451347af2b6c" },
@@ -24,7 +28,10 @@ const exchanges = [
         "mexc.com": [
             "0:3e32e9fe51f9309e6859114a4d43792f21eaae25b277f43ba029f601e3443734",
             "0:d99c8ba078cc1a84adefb3e27e175415d6190889c4b67aebaf30f01f8df2658d"]
-    }
+    }, 
+    { "broxus_bot": "0:4677beb06991e23f7f7a54b54232a572ce87461548463ef4cb7e443946526e1c"},
+    { "chatex_bot": "0:066c96b9e6a23b8caa8cb24ef91991bfa11b2d4c3033f14f521b2be972a7e189"},
+
 ]
 
 function direction(value) {

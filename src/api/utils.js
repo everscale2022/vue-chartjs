@@ -75,6 +75,18 @@ function formatTime(timeSeconds){
     return ((new Date(timeSeconds*1000)).toLocaleString());
 }
 
+function interval(i, period){   
+    const start = new Date();
+    start.setUTCHours(0,0,0,0);        
+    let lt = Math.round(start/1000) - (i-1) * period;
+    let gt = lt - period;    
+    if(i == 0){
+        lt = now;
+        gt = Math.round(start/1000);
+    }   
+    return {gt, lt};
+}
+
 module.exports = {
     oneTon,
     oneDay,
@@ -89,5 +101,6 @@ module.exports = {
     getRandomColor,
     whale,
     findExchangeName,
-    formatTime
+    formatTime,
+    interval
 }

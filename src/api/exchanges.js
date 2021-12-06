@@ -11,22 +11,12 @@ function formatAddr(addr) {
         return `eq: "${addr}"`
     }
 }
-function interval(i){   
-    var start = new Date();
-    start.setUTCHours(0,0,0,0);        
-    let lt = Math.round(start/1000) - (i-1) * utils.oneDay;
-    let gt = lt - utils.oneDay;    
-    if(i == 0){
-        lt = utils.now;
-        gt = Math.round(start/1000);
-    }   
-    return {gt, lt};
-}
+
 function exchangeDataQuery(addr) {
     addr = formatAddr(addr);
     let query = '{';
     for (let index = 30; index >= 0; index--) {       
-        let i = interval(index);
+        let i = utils.interval(index, utils.oneDay);
         query += `
             data_${i.gt}: aggregateTransactions(
                 filter: {      
@@ -130,8 +120,7 @@ const exchangesData = async (exchange) => {
             let timestamp = key.split("_")[1];
             let dt = new Date(timestamp * 1000).toLocaleDateString("ru-RU");
             labels.push(dt);
-        }
-        console.log(utils.getRandomColor());
+        }      
         return {
             datasets: [
                 {

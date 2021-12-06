@@ -4,13 +4,12 @@ const commaNumber = require('comma-number');
 
 function makeQuery() {
     let query = '{';
-    for (let index = 14; index >= 0; index--) {
-        let lt = utils.now - index * utils.oneDay;
-        let gt = lt - utils.oneDay;
+    for (let index = 28; index >= 0; index--) {
+        let i = utils.interval(index, utils.oneDay);
         query += `
-            data_${lt}: aggregateTransactions(
+            data_${i.lt}: aggregateTransactions(
                 filter: {      
-                now: { gt: ${gt} lt: ${lt}}
+                now: { gt: ${i.gt} lt: ${i.lt}}
                 balance_delta:{                    
                     gt: "0"                    
                 }
@@ -44,7 +43,7 @@ const surfTransactionsVolumes = async () => {
             datasets: [
                 {
                     label: "Surf transactions volumes",
-                    backgroundColor: "lightblue",
+                    backgroundColor: utils.getRandomColor(),
                     data: volumes,
                 },
             ],
@@ -74,7 +73,7 @@ const lastBiggestSurfTransactions = async () => {
         ) {
           id
           balance_delta(format: DEC)
-          now_string
+          now
           account_addr
         }
       }   
@@ -85,7 +84,7 @@ const lastBiggestSurfTransactions = async () => {
             return {
                 'Transactions ID': v.id,
                 'Account address': v.account_addr,
-                'Time': v.now_string,
+                'Time': utils.formatTime(v.now),
                 'Tokens': `${commaNumber(Math.round(v.balance_delta / 1_000_000_000))} EVERs`
             }
         });

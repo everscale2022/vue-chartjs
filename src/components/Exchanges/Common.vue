@@ -60,14 +60,14 @@ export default {
      this.loading_graphic= false;
     });   
     lastBiggestExchangeTransactions().then((r)=>{
-      this.items = r.dataTable;    
-      this.total = commaNumber(r.total);
-      if(r.total < 10000){
+      this.items = r.dataTable;          
+      if(r.total < -10000){
         this.trend = '🐂';
       }
       if(r.total > 10000){
         this.trend = '🐻'
       }
+      this.total = commaNumber(Math.abs(r.total));
       this.loading_table = false;        
     })               
   },

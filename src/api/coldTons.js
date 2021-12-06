@@ -43,7 +43,7 @@ const coldTons = async () => {
             datasets: [
                 {
                     label: "Cold EVERs",
-                    backgroundColor: "lightgray",
+                    backgroundColor:  utils.getRandomColor(),
                     data: volumes,
                 },
             ],

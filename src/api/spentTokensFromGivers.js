@@ -45,7 +45,7 @@ const spentTokensFromGivers = async () => {
             datasets: [
                 {
                     label: "Spent tokens from Givers",
-                    backgroundColor: "pink",
+                    backgroundColor:  utils.getRandomColor(),
                     data: volumes,
                 },
             ],

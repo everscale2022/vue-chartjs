@@ -15,6 +15,9 @@
     <div>
       <span class="h1">{{trend}} </span>
       <span v-if="trend!==null">Advantage: {{ total }} Evers</span>
+    </div>          
+    <div class="mt-3">
+      <span v-if="allAssets!==null">Assets: {{ allAssets }} Evers</span>
     </div>
     <div class="h5 mt-4">Last transactions</div>
         <div></div>
@@ -24,7 +27,7 @@
 </template>
 <script>
 import chart from "./Chart.vue";
-import {exchangesData, lastBiggestExchangeTransactions, getExchangesIds} from "../../api/exchanges";
+import {exchangesData, lastBiggestExchangeTransactions, getExchangesIds, totalExchangesBalance} from "../../api/exchanges";
 const utils = require("../../api/utils");
 const commaNumber = require('comma-number');
 const exchanges = [{"All exchanges": getExchangesIds()}].concat(utils.exchanges); 
@@ -38,7 +41,8 @@ export default {
       exchanges,
       dropdownButton: "ALL EXCHANGES",
       total: null,
-      trend: null
+      trend: null,
+      allAssets: null
     };
   },
   components: {
@@ -69,6 +73,9 @@ export default {
       }
       this.total = commaNumber(Math.abs(r.total));
       this.loading_table = false;        
+    })
+    totalExchangesBalance().then((r)=>{
+      this.allAssets = r;
     })               
   },
 };

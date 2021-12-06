@@ -15,7 +15,7 @@ function formatAddr(addr) {
 function exchangeDataQuery(addr) {
     addr = formatAddr(addr);
     let query = '{';
-    for (let index = 30; index >= 0; index--) {       
+    for (let index = 30; index >= 0; index--) {
         let i = utils.interval(index, utils.oneDay);
         query += `
             data_${i.gt}: aggregateTransactions(
@@ -35,7 +35,7 @@ function exchangeDataQuery(addr) {
     return query;
 }
 
-function getExchangesIds(){
+function getExchangesIds() {
     let ids = [];
     utils.exchanges.map((value) => {
         let addr = Object.values(value)[0];
@@ -83,14 +83,14 @@ function transQuery() {
 }
 
 const lastBiggestExchangeTransactions = async () => {
-   let query = transQuery();
+    let query = transQuery();
     try {
         let response = (await client.net.query({ "query": query })).result.data.transactions;
         var total = 0;
         const dataTable = response.map((v) => {
             total += Math.round(Number(v.balance_delta) / utils.oneTon);
-            return { 
-                'Transaction id': v.id,              
+            return {
+                'Transaction id': v.id,
                 'Exchange': utils.findExchangeName(v.account_addr).toUpperCase(),
                 'Time': utils.formatTime(v.now),
                 'Tokens': `${utils.whale(Math.abs(v.balance_delta))} ${utils.direction(v.balance_delta)} ${commaNumber(Math.round(Math.abs(v.balance_delta) / 1_000_000_000))} EVERs`
@@ -120,7 +120,7 @@ const exchangesData = async (exchange) => {
             let timestamp = key.split("_")[1];
             let dt = new Date(timestamp * 1000).toLocaleDateString("ru-RU");
             labels.push(dt);
-        }      
+        }
         return {
             datasets: [
                 {
@@ -136,13 +136,32 @@ const exchangesData = async (exchange) => {
     }
 }
 
-function exchanges(){  
-    return  [{"All exchanges": getExchangesIds()}].concat(exchanges);
+function exchanges() {
+    return [{ "All exchanges": getExchangesIds() }].concat(exchanges);
+}
+
+const totalExchangesBalance = async () => {
+    let query = `    
+    query {
+        aggregateAccounts(
+          filter: {
+            id: {
+              in: [${utils.exchangesAddresses().map(value => { return `"${value}"` })}]
+            }
+          }
+          fields: [{ field: "balance", fn: SUM }]
+        )
+      }
+      `;
+    console.log(query)
+    let response = (await client.net.query({ "query": query })).result.data.aggregateAccounts[0];
+    return commaNumber(Math.round(response / utils.oneTon));
 }
 
 module.exports = {
     exchangesData,
-    lastBiggestExchangeTransactions,    
+    lastBiggestExchangeTransactions,
     getExchangesIds,
-    exchanges
+    exchanges,
+    totalExchangesBalance
 }

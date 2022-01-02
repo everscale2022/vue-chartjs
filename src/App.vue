@@ -19,6 +19,9 @@
       <router-link to="/newSurfAccounts">Surf Accounts</router-link>     
       <router-link to="/exchanges">Exchanges activity</router-link>     
     </div>
+    <div id="nav" class="mb-5">         
+      <router-link to="/providers">Providers</router-link>           
+    </div>
      
     <router-view class="mt-4"/>
   </div>

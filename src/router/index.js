@@ -68,6 +68,11 @@ const routes = [
                 path: '/exchanges',
                 name: 'exchanges',
                 component: ()=> import('../components/Exchanges/Common.vue')
+            },
+            {
+                path: '/providers',
+                name: 'providers',
+                component: ()=> import('../components/Providers/Common.vue')
             }
         ]
     

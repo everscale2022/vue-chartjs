@@ -4,10 +4,10 @@ const commaNumber = require('comma-number');
 
 function makeQuery() {
     let query = '{';
-    for (let index = 28; index >= 0; index--) {
+    for (let index = 14; index >= 0; index--) {
         let i = utils.interval(index, utils.oneDay);
         query += `
-            data_${i.lt}: aggregateTransactions(
+            data_${i.gt}: aggregateTransactions(
                 filter: {      
                 now: { gt: ${i.gt} lt: ${i.lt}}
                 balance_delta:{                    

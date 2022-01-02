@@ -102,10 +102,10 @@ function interval(i, period) {
     start.setUTCHours(0, 0, 0, 0);
     let lt = Math.round(start / 1000) - (i - 1) * period;
     let gt = lt - period;
-    if (i == 0) {
-        lt = now;
-        gt = Math.round(start / 1000);
-    }
+    // if (i == 0) {
+    //     lt = now;
+    //     gt = Math.round(start / 1000);
+    // }
     return { gt, lt };
 }
 

@@ -1,47 +1,25 @@
 <template>
   <div id="app">
-   <div class="navbar-brand mb-3">EverScale MainNet</div>
-    <div id="nav" class="mb-5">   
-      <router-link to="/accounts">Surf accounts balances</router-link>
-      <router-link to="/blocks">Blocks</router-link>
-      <router-link to="/transactions">Transactions</router-link>       
-      <router-link to="/surfTransactionsCount">Surf transactions count</router-link>       
-      <router-link to="/dailyTransactionsCount">Daily transactions count</router-link>       
-    </div>
-    <div id="nav" class="mb-5">         
-      <router-link to="/StakesGiversUsers">All assets</router-link>
-      <router-link to="/surfTransactionsVolumes">Surf transactions volumes</router-link>
-      <router-link to="/allTransactionsVolumes">All transactions volumes</router-link>
-      <router-link to="/spentTokensFromGivers">Spent tokens from givers</router-link>     
-      <router-link to="/coldTons">Cold evers</router-link>     
-    </div><div id="nav" class="mb-5">         
-      <router-link to="/Stakes-vs-Free-Circulation">Stakes vs. Free circulation</router-link>     
-      <router-link to="/newSurfAccounts">Surf Accounts</router-link>     
-      <router-link to="/exchanges">Exchanges activity</router-link>     
-    </div>
-    <div id="nav" class="mb-5">         
-      <router-link to="/providers">Providers</router-link>           
-    </div>
-     
-    <router-view class="mt-4"/>
+    <b-navbar  style="padding-left:3rem" toggleable="lg" type="dark" variant="success">
+      <b-navbar-brand href="#"  v-b-toggle.sidebar-1>Everscale Mainnet</b-navbar-brand>      
+    </b-navbar>
+   <router-view class="mt-4"/>   
+
+    <Sidebar/>
   </div>
 </template>
+<script>
+import Sidebar from './components/sidebar/sidebar.vue'
+export default {
+  components:{
+    Sidebar
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-  padding:30px;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+  -moz-osx-font-smoothing: grayscale; 
 }
 </style>

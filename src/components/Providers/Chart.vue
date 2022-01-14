@@ -11,7 +11,7 @@ export default {
         maintainAspectRatio: true,
         title: {
           display: true,
-          text: "Providers popularity",
+          text: "Providers popularity (counted by ips)",
           fontSize: 25,
           fontStyle: "normal",
         },

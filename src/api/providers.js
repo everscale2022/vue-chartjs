@@ -44,7 +44,13 @@ const providers = async () => {
             }
         }
         const labels = Object.keys(obj);
+        
         const assets = Object.values(obj);
+        const total = assets.reduce((a,b)=>a+b);
+        assets.map((v,i)=>{
+            let p = Math.round(v / total * 100);
+            labels[i] += `: ${p}%`; 
+        })
         return {
             assets,
             labels
@@ -58,3 +64,6 @@ const providers = async () => {
 module.exports = {
     providers
 }
+
+
+// providers()

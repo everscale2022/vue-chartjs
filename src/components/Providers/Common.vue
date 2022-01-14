@@ -3,9 +3,9 @@
     <div>
       <chart :chart-data="chartData" />     
     </div>  
-    <div class="text-success">
-        Date: 02.01.2022 <br>        
-        Providers (Nodes from one provider can be located in different continents
+    <div class="text-success mb-3 mt-4" >       
+        <span>Updated: 02.01.2022 <br>        
+        Nodes from one provider can be located in different continents</span>
     </div>      
   </div>
 </template>
@@ -33,7 +33,7 @@ export default {
         labels: r.labels,
         datasets: [
           {
-            label: "Providers",
+            label: "Providers (counted by ips)",
             backgroundColor: this.colors,
             data: r.assets,
           },

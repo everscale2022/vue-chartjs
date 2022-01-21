@@ -5,7 +5,7 @@
       <b-navbar-brand href="#"  v-b-toggle.sidebar-1>Everscale Mainnet</b-navbar-brand>      
     </b-navbar>
    <router-view class="mt-4"/>   
-   <Rocket/>
+   <Rocket v-if="isRoute"/>
     <Sidebar/>
   </div>
 </template>
@@ -16,7 +16,12 @@ export default {
   components:{
     Sidebar,
     Rocket
+  },
+  computed: {
+  isRoute() {
+     return this.$route.name === null     
   }
+}
 }
 </script>
 <style>

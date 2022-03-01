@@ -73,6 +73,11 @@ const routes = [
                 path: '/providers',
                 name: 'providers',
                 component: ()=> import('../components/Providers/Common.vue')
+            },
+            {
+                path: '/btcSpots',
+                name: 'btcSpots',
+                component: ()=> import('../components/btcSpots/Common.vue')
             }
         ]
     

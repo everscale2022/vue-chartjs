@@ -1,5 +1,7 @@
 const fetch = require("node-fetch");
 // const utils = require("./utils");
+const { Simple } = require("@lab-code/moonphase");
+
 
 const binanceData = async (startTime, limit) => {
     let response = await fetch(`https://api.binance.com/api/v1/klines?symbol=BTCUSDT&interval=1d&limit=${limit}&startTime=${startTime}`);
@@ -21,7 +23,7 @@ const binanceData = async (startTime, limit) => {
             diff: (Number(d[2]) - Number(d[3])),
             date: d[0],
             price: d[2],
-            volume: d[5]        
+            volume: d[5]
         }
     });
 
@@ -29,9 +31,9 @@ const binanceData = async (startTime, limit) => {
 };
 
 
-const spotData = async () => {   
-    let response = await fetch(`https://data.opendatasoft.com/api/records/1.0/search/?dataset=daily-sunspot-number%40datastro&`+
-                               `q=&sort=column_4&facet=year_month_day&rows=100`);
+const spotData = async () => {
+    let response = await fetch(`https://data.opendatasoft.com/api/records/1.0/search/?dataset=daily-sunspot-number%40datastro&` +
+        `q=&sort=column_4&facet=year_month_day&rows=100`);
     let txt = await response.text()
     return JSON.parse(txt).records.map(r => ({
         avg_spots: r.fields.column_5,
@@ -40,16 +42,30 @@ const spotData = async () => {
 
 }
 
+function getMoon(startTimestamp, limit) {    
+    let moon = [];
+    for(let i = 0; i < limit; i++){
+        let t = startTimestamp + i*24*60*60*1000;
+        let dateObj = new Date(t);
+        var month = dateObj.getUTCMonth() + 1; //months from 1-12      
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+        moon.push(Simple(day, month, year));   
+    }
+
+    return moon;
+}
+
 const getData = async () => {
     let sunSpot = await spotData();
     sunSpot = sunSpot.reverse();
-    let startTime = Date.parse(sunSpot[0].date);
-    console.log(sunSpot)
+    let startTime = Date.parse(sunSpot[0].date);  
     const binance = await binanceData(startTime, sunSpot.length);    
+    const moon = getMoon(startTime, sunSpot.length);
     return {
         datasets: [
             {
-                label: "Sun spots",              
+                label: "Sun spots",
                 yAxisID: "Sun spots",
                 data: sunSpot.map(v => v.avg_spots),
                 borderColor: "orange",
@@ -57,23 +73,30 @@ const getData = async () => {
             },
             {
                 label: "BTC price changed",
-                yAxisID: "BinanceDiff",              
+                yAxisID: "BinanceDiff",
                 data: binance.map(v => v.diff),
                 borderColor: "brown",
                 fill: false
             },
             {
                 label: "BTC price",
-                yAxisID: "BinancePrice",              
+                yAxisID: "BinancePrice",
                 data: binance.map(v => v.price),
                 borderColor: "red",
                 fill: false
             },
             {
                 label: "Volume trades",
-                yAxisID: "BinanceVolume",              
+                yAxisID: "BinanceVolume",
                 data: binance.map(v => v.volume),
                 borderColor: "blue",
+                fill: false
+            },
+            {
+                label: "Moon day",
+                yAxisID: "Moon",
+                data: moon,
+                borderColor: "green",
                 fill: false
             },
         ],

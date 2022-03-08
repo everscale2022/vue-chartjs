@@ -5,26 +5,7 @@ const { reactiveProp } = mixins;
 export default {
 	extends: Line,
 	mixins: [reactiveProp],
-	data() {
-		/*
-    ,
-        options:{
-            y: {
-                type: 'linear',
-                display: true,
-                position: 'left',
-              },
-              y1: {
-                type: 'linear',
-                display: true,
-                position: 'right',
-        
-                // grid line settings
-                grid: {
-                  drawOnChartArea: false, // only want the grid lines for one axis to show up
-                },
-              },            
-        }*/
+	data() {	
 		return {
 			options: {
 				responsive: true,
@@ -56,6 +37,12 @@ export default {
 							axis: 'volume',
 							type: "linear",
 							position: "left",						
+						},
+						{
+							id: "Moon",
+							axis: 'volume',
+							type: "linear",
+							position: "right",						
 						},
 					],
 				},

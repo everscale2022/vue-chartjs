@@ -10,6 +10,7 @@
   },
   "main": "webpack.config.js",
   "dependencies": {
+    "@lab-code/moonphase": "^1.0.4",
     "@tonclient/appkit": "^0.3.0",
     "@tonclient/core": "^1.28.0",
     "@tonclient/lib-web": "^1.28.0",

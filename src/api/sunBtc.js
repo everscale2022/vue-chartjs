@@ -19,7 +19,9 @@ const binanceData = async (startTime, limit) => {
             // 'Taker buy quote': d[10],
             // 'Ignore': d[11]
             diff: (Number(d[2]) - Number(d[3])),
-            date: d[0]
+            date: d[0],
+            price: d[2],
+            volume: d[5]        
         }
     });
 
@@ -47,19 +49,31 @@ const getData = async () => {
     return {
         datasets: [
             {
-                label: "Sun spots",
-                // backgroundColor: utils.getRandomColor(),
+                label: "Sun spots",              
                 yAxisID: "Sun spots",
                 data: sunSpot.map(v => v.avg_spots),
                 borderColor: "orange",
                 fill: false
             },
             {
-                label: "BTC waves",
-                yAxisID: "Binance",
-                // backgroundColor: utils.getRandomColor(),
+                label: "BTC price changed",
+                yAxisID: "BinanceDiff",              
                 data: binance.map(v => v.diff),
                 borderColor: "brown",
+                fill: false
+            },
+            {
+                label: "BTC price",
+                yAxisID: "BinancePrice",              
+                data: binance.map(v => v.price),
+                borderColor: "red",
+                fill: false
+            },
+            {
+                label: "Volume trades",
+                yAxisID: "BinanceVolume",              
+                data: binance.map(v => v.volume),
+                borderColor: "blue",
                 fill: false
             },
         ],

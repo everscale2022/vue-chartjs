@@ -42,9 +42,20 @@ export default {
 							position: "left",
 						},
 						{
-							id: "Binance",
+							id: "BinanceDiff",
 							type: "linear",
 							position: "right",						
+						},
+						{
+							id: "BinancePrice",
+							type: "linear",
+							position: "right",						
+						},
+						{
+							id: "BinanceVolume",
+							axis: 'volume',
+							type: "linear",
+							position: "left",						
 						},
 					],
 				},

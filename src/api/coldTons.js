@@ -5,8 +5,8 @@ const commaNumber = require('comma-number');
 function makeQuery() {
     let query = '{';
     for (let index = 30; index >= 0; index--) {
-        let lt = utils.now - index * utils.oneWeek;
-        let gt = lt - utils.oneWeek;
+        let lt = utils.now - index * utils.oneDay;
+        let gt = lt - utils.oneDay;
         query += `      
         data_${lt}: aggregateAccounts(
             filter:{      
@@ -117,7 +117,7 @@ const coldTonsAccounts = async () => {
         return response.map((v) => {
             return {
                 'Address': v.id,
-                'Balance': `${commaNumber(Math.round(v.balance / utils.oneTon))} tons`
+                'Balance': `${commaNumber(Math.round(v.balance / utils.oneTon))} evers`
             }
         });
     } catch (e) {

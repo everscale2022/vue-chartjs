@@ -78,9 +78,9 @@ header a:hover {
   background-color: #1f4272;
 }
 .svg-containter {
-  position: relative;
+  position: fixed;
   width: 100%;
-  height: 1000px;
+  height: 100vh;
   background: #0096D5;
   background-image: -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%);

@@ -66,7 +66,7 @@ export default {
     lastBiggestExchangeTransactions().then((r)=>{
       this.items = r.dataTable;          
       if(r.total < -10000){
-        this.trend = '🐂';
+        this.trend = '🐂'; 
       }
       if(r.total > 10000){
         this.trend = '🐻'

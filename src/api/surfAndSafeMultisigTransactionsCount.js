@@ -15,7 +15,7 @@ function makeQuery() {
                 }
                 account:{
                 code_hash:{
-                    eq: "${utils.surfCodeHash}"
+                    in: ["${utils.surfCodeHash}", "${utils.safeMultisigCodeHash}"]
                 }
                 }
                 }
@@ -27,7 +27,7 @@ function makeQuery() {
     return query;
 }
 
-const surfTransactionsCount = async () => {
+const surfAndSafeMultisigTransactionsCount = async () => {
     let volumes = [];
     let labels = [];
 
@@ -42,7 +42,7 @@ const surfTransactionsCount = async () => {
         return {
             datasets: [
                 {
-                    label: "Surf transactions count",
+                    label: "Surf and SafeMultisig transactions count",
                     backgroundColor: "lightgray",
                     data: volumes,
                 },
@@ -55,5 +55,5 @@ const surfTransactionsCount = async () => {
 }
 
 module.exports = {
-    surfTransactionsCount   
+    surfAndSafeMultisigTransactionsCount   
 }

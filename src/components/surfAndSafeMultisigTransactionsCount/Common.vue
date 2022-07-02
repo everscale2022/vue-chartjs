@@ -9,7 +9,7 @@
 </template>
 <script>
 import chart from "./Chart.vue";
-import {surfTransactionsCount} from "../../api/surfTransactionsCount";
+import {surfAndSafeMultisigTransactionsCount} from "../../api/surfAndSafeMultisigTransactionsCount";
 
 export default {
   data() {
@@ -23,7 +23,7 @@ export default {
     chart,
   },
    mounted() {
-    surfTransactionsCount().then((r)=>{
+    surfAndSafeMultisigTransactionsCount().then((r)=>{
      this.chartData = r;
      this.loading_graphic = false;
     });             

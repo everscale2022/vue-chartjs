@@ -1,12 +1,15 @@
-const { Account } = require("@tonclient/appkit");
-const { TonClient } = require("@tonclient/core");
-const { libWeb } = require("@tonclient/lib-web");
+const { Account } = require("@eversdk/appkit");
+const { TonClient } = require("@eversdk/core");
+const { libWeb, libWebSetup } = require("@eversdk/lib-web");
 
+libWebSetup({
+    binaryURL: "./eversdk.wasm",
+});
 TonClient.useBinaryLibrary(libWeb)
 
 const client = new TonClient({
     network: {
-        server_address: "net.ton.dev",
+        endpoints: ["https://mainnet.evercloud.dev/bdaca70fc675471b95b4b953d4c040ee/graphql"],
     }
 });
 

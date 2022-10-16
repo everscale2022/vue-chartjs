@@ -40,9 +40,9 @@ const routes = [
                 component: ()=> import('../components/spentTokensFromGivers/Common.vue')
             },
             {
-                path: '/surfTransactionsCount',
-                name: 'surfTransactionsCount',
-                component: ()=> import('../components/surfTransactionsCount/Common.vue')
+                path: '/surfAndSafeMultisigTransactionsCount',
+                name: 'surfAndSafeMultisigTransactionsCount',
+                component: ()=> import('../components/surfAndSafeMultisigTransactionsCount/Common.vue')
             },
             {
                 path: '/dailyTransactionsCount',

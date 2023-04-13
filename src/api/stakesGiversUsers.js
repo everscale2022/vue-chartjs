@@ -6,14 +6,26 @@ const utils = require('./utils');
 const stakesGiversUsers = async () => {
     const Burning =
     {
-        type: "QueryCollection",
+        type: "AggregateCollection",
         collection: "accounts",
+        fields: [
+            {
+                field: "balance",
+                fn: AggregationFn.SUM
+            }
+        ],
         filter: {
-            code_hash: {
-                eq: "d80dd077e56dd76af65b163b6da94cca9d2c8e62740d09d98f9a4459ac069958",
-            },
-        },
-        result: "balance(format:DEC)",
+            id: {
+                in: [
+                    "0:0000000000000000000000000000000000000000000000000000000000000000",
+                    utils.burner
+                ]
+            }
+            // }
+            // code_hash: {
+            //     eq: "d80dd077e56dd76af65b163b6da94cca9d2c8e62740d09d98f9a4459ac069958",
+            // },
+        }
     }
         ;
     const Stakes =
@@ -29,7 +41,8 @@ const stakesGiversUsers = async () => {
         filter: {
             code_hash: {
                 in: [
-                    utils.depoolCodeHash,
+                    utils.depoolV3CodeHash,
+                    utils.depoolBroxusCodeHash,
                     utils.electorCodeHash
                 ]
             }
@@ -48,10 +61,7 @@ const stakesGiversUsers = async () => {
         filter: {
             id: {
                 in: [
-                    "-1:7777777777777777777777777777777777777777777777777777777777777777",
-                    "-1:8888888888888888888888888888888888888888888888888888888888888888",
-                    "-1:9999999999999999999999999999999999999999999999999999999999999999",
-                    "0:fee1a3bd261619f036d83aafd8b34f47d794bbb58185379877291003f3a3526d"
+                    ...utils.givers
                 ]
             }
         }
@@ -88,7 +98,8 @@ const stakesGiversUsers = async () => {
         const response = await client.net.batch_query({
             operations
         });
-        const BurningAssets = Math.round(response.results[0][0].balance / utils.oneTon);
+
+        const BurningAssets = Math.round(response.results[0][0] / utils.oneTon);
         const StakesAssets = Math.round(response.results[1][0] / utils.oneTon);
         const GiversAssets = Math.round(response.results[2][0] / utils.oneTon);
         const TotalAssets = Math.round(response.results[3][0] / utils.oneTon);
@@ -110,7 +121,7 @@ const stakesGiversUsers = async () => {
                 coldTonsAssets
             ],
             labels: [
-                `BURNING: ${commaNumber(BurningAssets)} EVERs(${BurningAssetsPercents})%`,
+                `BURNED: ${commaNumber(BurningAssets)} EVERs(${BurningAssetsPercents})%`,
                 `STAKES: ${commaNumber(StakesAssets)} EVERs(${StakesAssetsPercents})%`,
                 `GIVERS: ${commaNumber(GiversAssets)} EVERs(${GiversAssetsPercents})%`,
                 `FREE CIRCULATION: ${commaNumber(UsersAssets)} EVERs(${UsersAssetsPercents})%`,

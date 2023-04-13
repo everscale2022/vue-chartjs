@@ -14,7 +14,7 @@ import chart from "./Chart.vue";
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
     };
   },
   components: {

@@ -35,14 +35,15 @@ const exchanges = [{"All exchanges": getExchangesIds()}].concat(utils.exchanges)
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading_graphic: true,
       loading_table: true,
       exchanges,
       dropdownButton: "ALL EXCHANGES",
       total: null,
       trend: null,
-      allAssets: null
+      allAssets: null,
+      items: []
     };
   },
   components: {

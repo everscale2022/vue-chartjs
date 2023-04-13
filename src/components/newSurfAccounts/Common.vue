@@ -19,7 +19,7 @@ import utils from "../../api/utils";
 export default    {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading_graphic: true      
     };
   },

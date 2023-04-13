@@ -15,7 +15,7 @@
           <b-nav-item><router-link to="/Stakes-vs-Free-Circulation">Stakes vs. Free circulation</router-link>     </b-nav-item>
           <b-nav-item><router-link to="/newSurfAccounts">Surf Accounts</router-link>     </b-nav-item>
           <b-nav-item><router-link to="/exchanges">Exchanges activity</router-link></b-nav-item>
-          <b-nav-item><router-link to="/providers">Providers</router-link>    </b-nav-item>
+          <!-- <b-nav-item><router-link to="/providers">Providers</router-link>    </b-nav-item> -->
           <b-nav-item><router-link to="/btcSpots">BTC SPOTS</router-link>    </b-nav-item>
       </b-nav>            
     </b-sidebar>

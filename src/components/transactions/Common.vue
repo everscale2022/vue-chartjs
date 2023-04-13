@@ -16,7 +16,7 @@ import {netTransactions} from "../../api/netTransactions";
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
     };
   },
   components: {

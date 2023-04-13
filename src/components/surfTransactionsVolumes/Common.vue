@@ -16,9 +16,10 @@ import {surfTransactionsVolumes,lastBiggestSurfTransactions} from "../../api/sur
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading_graphic: true,
-      loading_table: true
+      loading_table: true,
+      items:[]
     };
   },
   components: {

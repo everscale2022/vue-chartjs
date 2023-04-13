@@ -17,7 +17,7 @@ import {spentTokensFromGivers, lastTransactionsFromGivers} from "../../api/spent
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading: true,
       items:[]
     };

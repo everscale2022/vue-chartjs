@@ -14,7 +14,7 @@ import {dailyTransactionsCount} from "../../api/dailyTransactionsCount";
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading_graphic: true,
       loading_table: true
     };
@@ -23,7 +23,7 @@ export default {
     chart,
   },
    mounted() {
-    dailyTransactionsCount().then((r)=>{
+     dailyTransactionsCount().then((r)=>{
      this.chartData = r;
      this.loading_graphic = false;
     });             

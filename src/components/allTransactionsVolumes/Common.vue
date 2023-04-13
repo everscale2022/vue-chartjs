@@ -16,7 +16,7 @@ import {allTransactionsVolumes,lastBiggestTransactions} from "../../api/allTrans
 export default {
   data() {
     return {
-      chartData: null,
+      chartData: {},
       loading_graphic: true,
       loading_table: true
     };

@@ -16,7 +16,7 @@ import { getRandomColor } from "../../api/utils";
 export default {
   data() {
     return {
-      chartData: null,   
+      chartData: {},   
       colors: null
     };
   },

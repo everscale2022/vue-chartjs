@@ -153,7 +153,6 @@ const totalExchangesBalance = async () => {
         )
       }
       `;
-    console.log(query)
     let response = (await client.net.query({ "query": query })).result.data.aggregateAccounts[0];
     return commaNumber(Math.round(response / utils.oneTon));
 }
